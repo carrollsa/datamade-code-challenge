@@ -47,6 +47,7 @@ function parseFailure(errorResponse) {
     
     var errorDiv = document.getElementById('error-results')
 
+    // Display error response
     errorDiv.style = "display: block"
     errorDiv.innerHTML = errorResponse
 }
