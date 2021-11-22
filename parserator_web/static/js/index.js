@@ -6,14 +6,12 @@ function parseSuccess(data) {
     document.getElementById('error-results').style = "display: none"
     document.getElementById('address-results').style = "display: block"
 
-    // Select elements to update
-    var existingTable = document.querySelector('table.table tbody')
-    var addressTypeSpan = document.getElementById('parse-type')
-
-    // Render address type
+    // Render updated address type
+    let addressTypeSpan = document.getElementById('parse-type')
     addressTypeSpan.innerText = data.address_type
 
-    // Generate and append address components to existing table 
+    // Generate table of key-value pairs and update existing table 
+    let existingTable = document.querySelector('tbody')
     let extendedTable = generateExtendedTable(data.address_components)
     existingTable.parentNode.replaceChild(extendedTable, existingTable)
 }
@@ -45,13 +43,13 @@ function parseFailure(errorResponse) {
     // Hide previous results
     document.getElementById('address-results').style = "display: none"
     
-    var errorDiv = document.getElementById('error-results')
-
     // Display error response
+    let errorDiv = document.getElementById('error-results')
     errorDiv.style = "display: block"
     errorDiv.innerHTML = errorResponse
 }
 
+// Make API call upon button click and run appropriate function
 document.getElementById('submit').addEventListener('click', function(event) {
 
     event.preventDefault()
